@@ -207,7 +207,7 @@ class Connection(object):
 
 base.py 作为全部models的基类，其他类需继承 代码如下：
  
- <pre><code>
+ ```python
 
  """A lightweight sharding orm framework."""
 
@@ -239,11 +239,11 @@ class Model(object):
             if cls.__insert_counter__ >= settings.DB_TABLES_LEN:
                 cls.__insert_counter__ = 0
         cnn = Connection(*db_conf)
-  </code></pre>
+  ```
 
 ## 代码使用
 插入：
- <pre><code>
+```python
 from models.user import User
 from datetime import datetime
 for n in range(1000):
@@ -256,10 +256,10 @@ for n in range(1000):
 			last_login_time=datetime.now())
 	u.insert()
 	
-</code></pre>
+```
  
 查询：
-  <pre><code>
+```python
 @classmethod
     def get_user_id(cls, field_name, field_value):
         db_conf, tb_shard = models.get_db_table(field_value)
@@ -272,7 +272,7 @@ for n in range(1000):
         finally:
             cnn.close()
 
-</code></pre>
+```
 
 ## 其他第三方数据库分库方案
 - [mycat](http://mycat.io/) 脱胎于淘宝
