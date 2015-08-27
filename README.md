@@ -270,3 +270,7 @@ for n in range(1000):
             cnn.close()
 
 </code></pre>
+
+## 其他第三方数据库分库方案
+- [mycat] http://mycat.io/ 脱胎于淘宝
+- [Oceanus] https://github.com/58code/Oceanus 58同城数据库中间件
