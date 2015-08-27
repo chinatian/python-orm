@@ -1,0 +1,61 @@
+{"users":[
+    {"name":"junfeng009", "password":"123456", "head_img_url":"/static/head/010.png", "user_details":[
+        {"field_name":"phone", "field_value":"13811429668"}
+    ]},
+    {"name":"junfeng010", "password":"384593", "head_img_url":"/static/head/011.png", "user_details":[
+        {"field_name":"phone", "field_value":"18610195110"}
+    ]},
+    {"name":"Handson Liu", "password":"123456", "head_img_url":"/static/head/001.png", "user_details":[
+        {"field_name":"phone", "field_value":"13423459980"}
+    ]},
+    {"name":"江坤", "password":"123456", "head_img_url":"/static/head/002.png", "user_details":[
+        {"field_name":"phone", "field_value":"13619082988"}
+    ]},
+    {"name":"程鑫", "password":"123456", "head_img_url":"/static/head/003.png", "user_details":[
+        {"field_name":"phone", "field_value":"13813508530"}
+    ]},
+    {"name":"张德波", "password":"123456", "head_img_url":"/static/head/004.png", "user_details":[
+        {"field_name":"phone", "field_value":"13977692456"}
+    ]},
+    {"name":"黄鸿斌", "password":"123456", "head_img_url":"/static/head/005.png", "user_details":[
+        {"field_name":"phone", "field_value":"13001028934"}
+    ]},
+    {"name":"林莉", "password":"123456", "head_img_url":"/static/head/006.png", "user_details":[
+        {"field_name":"phone", "field_value":"15985390302"}
+    ]},
+    {"name":"肖江平", "password":"123456", "head_img_url":"/static/head/007.png", "user_details":[
+        {"field_name":"phone", "field_value":"18612868903"}
+    ]},
+    {"name":"孔亮", "password":"123456", "head_img_url":"/static/head/008.png", "user_details":[
+        {"field_name":"phone", "field_value":"13590863970"}
+    ]},
+    {"name":"陈硕", "password":"123456", "head_img_url":"/static/head/009.png", "user_details":[
+        {"field_name":"phone", "field_value":"15123802367"}
+    ]},
+    {"name":"楚学文", "password":"123456", "head_img_url":"/static/head/002.png", "user_details":[
+        {"field_name":"phone", "field_value":"15889041267"}
+    ]},
+    {"name":"支刚", "password":"123456", "head_img_url":"/static/head/002.png", "user_details":[
+        {"field_name":"phone", "field_value":"15739084509"}
+    ]},
+    {"name":"郭德纲", "password":"123456", "head_img_url":"/static/head/002.png", "user_details":[
+        {"field_name":"phone", "field_value":"18570508549"}
+    ]}
+],
+"friends": [
+    {"user_phone":"13811429668", "friend_phone":"13423459980"},
+    {"user_phone":"13811429668", "friend_phone":"13619082988"},
+    {"user_phone":"13811429668", "friend_phone":"13813508530"},
+    {"user_phone":"13811429668", "friend_phone":"13977692456"},
+    {"user_phone":"13811429668", "friend_phone":"13001028934"},
+    {"user_phone":"13811429668", "friend_phone":"15985390302"},
+    {"user_phone":"13811429668", "friend_phone":"18612868903"},
+    {"user_phone":"13811429668", "friend_phone":"13590863970"},
+    {"user_phone":"18610195110", "friend_phone":"15123802367"},
+    {"user_phone":"18610195110", "friend_phone":"15889041267"},
+    {"user_phone":"18610195110", "friend_phone":"15739084509"},
+    {"user_phone":"18610195110", "friend_phone":"18570508549"},
+    {"user_phone":"18610195110", "friend_phone":"13423459980"},
+    {"user_phone":"18610195110", "friend_phone":"13619082988"},
+    {"user_phone":"18610195110", "friend_phone":"13813508530"}
+]}
