@@ -22,6 +22,26 @@ CREATE TABLE `seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='生成id序列号';
 </code></pre>
 存放数据如下：
+| id  | tb |
+| 1	 | user_0 |
+| 17  |	user_1 |
+| 417 |	user_10 |
+| 177  |	user_11 |
+| 193 |	user_12 |
+| 209 |	user_13 |
+| 225 |	user_14 |
+| 241 |	user_15 |
+| 289 |	user_2 |
+| 49 |	user_3 |
+| 65	 | user_4 |
+| 337 |	user_5 |
+| 97 |	user_6 |
+| 113 |	user_7 |
+| 129 |	user_8 |
+| 145 |	user_9 |
+
+
+
  
 每个数据库中都会存在这样一个表，主键的id分配由各自的数据库负责，减少由中心服务器分配带来的压力单点的问题。
  
