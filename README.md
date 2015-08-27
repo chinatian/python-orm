@@ -274,3 +274,7 @@ for n in range(1000):
 ## 其他第三方数据库分库方案
 - [mycat] http://mycat.io/ 脱胎于淘宝
 - [Oceanus] https://github.com/58code/Oceanus 58同城数据库中间件
+- [本项目托管地址] https://github.com/chinatian/python-orm
+
+作者：田强
+10年互联网研发，就职大唐电信新华瑞德，qq:27998561 
