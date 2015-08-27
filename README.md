@@ -23,41 +23,27 @@ CREATE TABLE `seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='生成id序列号';
 </code></pre>
 - seq存放数据如下：
-<pre><code>
-id  tb
-1	user_0
-17	user_1
-417	user_10
-177	user_11
-193	user_12
-209	user_13
-225	user_14
-241	user_15
-289	user_2
-49	user_3
-65	user_4
-337	user_5
-97	user_6
-113	user_7
-129	user_8
-145	user_9
-1	user_index_0
-17	user_index_1
-161	user_index_10
-177	user_index_11
-193	user_index_12
-209	user_index_13
-225	user_index_14
-241	user_index_15
-33	user_index_2
-49	user_index_3
-65	user_index_4
-337	user_index_5
-97	user_index_6
-113	user_index_7
-129	user_index_8
-145	user_index_9
-</code></pre>
+
+| id      | tb            |
+| :------ | :------------:|
+|       1 | 	user_0    |
+|      17 | 	user_1    |
+| 417	  | user_10       |
+| 177	  | user_11       |
+| 193	  | user_12       |
+| 209	  | user_13       |
+| 225	  | user_14       |
+| 241	  | user_15       |
+| 289     | 	user_2    |
+| 49      | 	user_3    |
+| 65      | 	user_4    |
+| 337     | 	user_5    |
+| 97      | 	user_6    |
+| 113     | 	user_7    |
+| 129     | 	user_8    |
+| 145     | 	user_9    |
+
+
 
 
  
