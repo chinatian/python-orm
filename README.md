@@ -52,18 +52,19 @@ CREATE TABLE `seq` (
 ### 分库分表的规模设定
 设定分为16个数据库，每个表在每个数据库中有16个分表。
 比如user表：
-<pre><code>
+
+```sql
 CREATE TABLE `user_0` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(200) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=36583 DEFAULT CHARSET=utf8;
-</code></pre>
+```
 
 建立16个数据库，每个数据库中user表的数量为16个，这样user表会有16×16个分表
 数据库如下：
-<pre><code>
+```sql
 CREATE DATABASE `platform_test_0`;
 
 CREATE DATABASE `platform_test_1`;
@@ -95,7 +96,7 @@ CREATE DATABASE `platform_test_13`;
 CREATE DATABASE `platform_test_14`;
 
 CREATE DATABASE `platform_test_15`;
-</code></pre>
+```
  
 每个数据库中user表的如下：
 <pre><code>
