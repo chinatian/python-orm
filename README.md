@@ -62,49 +62,211 @@ id  tb
  
 每个数据库中都会存在这样一个表，主键的id分配由各自的数据库负责，减少由中心服务器分配带来的压力单点的问题。
  
-3.2 分库分表的规模设定
+### 分库分表的规模设定
 设定分为16个数据库，每个表在每个数据库中有16个分表。
 比如user表：
+<pre><code>
 CREATE TABLE `user_0` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(200) DEFAULT NULL,
   `create_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=36583 DEFAULT CHARSET=utf8;
+</code></pre>
+
 建立16个数据库，每个数据库中user表的数量为16个，这样user表会有16×16个分表
-数据库截图如下：
+数据库如下：
+<pre><code>
+CREATE DATABASE `platform_test_0`;
+
+CREATE DATABASE `platform_test_1`;
+
+CREATE DATABASE `platform_test_2`;
+
+CREATE DATABASE `platform_test_3`;
+
+CREATE DATABASE `platform_test_4`;
+
+CREATE DATABASE `platform_test_5`;
+
+CREATE DATABASE `platform_test_6`;
+
+CREATE DATABASE `platform_test_7`;
+
+CREATE DATABASE `platform_test_8`;
+
+CREATE DATABASE `platform_test_9`;
+
+CREATE DATABASE `platform_test_10`;
+
+CREATE DATABASE `platform_test_11`;
+
+CREATE DATABASE `platform_test_12`;
+
+CREATE DATABASE `platform_test_13`;
+
+CREATE DATABASE `platform_test_14`;
+
+CREATE DATABASE `platform_test_15`;
+</code></pre>
  
-每个数据库中user表的截图如下：
+每个数据库中user表的如下：
+<pre><code>
+seq
+user_0
+user_1
+user_10
+user_11
+user_12
+user_13
+user_14
+user_15
+user_2
+user_3
+user_4
+user_5
+user_6
+user_7
+user_8
+user_9
+user_index_0
+user_index_1
+user_index_10
+user_index_11
+user_index_12
+user_index_13
+user_index_14
+user_index_15
+user_index_2
+user_index_3
+user_index_4
+user_index_5
+user_index_6
+user_index_7
+user_index_8
+user_index_9
+</code></pre>
+
  
-3.3 代码编写
-3.3.1 目录结构
+## 代码编写
+### 目录结构
+- db - 数据库访问工具类
+- moddels - 数据模型
+- sql - 数据库创建及数据表创建
+### 数据库访问工具类
+直接使用Facebook的开源代码，如下：
+
+<pre><code>
+"""A lightweight wrapper around MySQLdb."""
+
+import copy
+import MySQLdb.constants
+import MySQLdb.converters
+import MySQLdb.cursors
+import itertools
+import logging
+import time
+
+class Connection(object):
+    """A lightweight wrapper around MySQLdb DB-API connections.
+
+    The main value we provide is wrapping rows in a dict/object so that
+    columns can be accessed by name. Typical usage:
+
+        db = database.Connection("localhost", "mydatabase")
+        for article in db.query("SELECT * FROM articles"):
+            print article.title
+
+    Cursors are hidden by the implementation, but other than that, the methods
+    are very similar to the DB-API.
+
+    We explicitly set the timezone to UTC and the character encoding to
+    UTF-8 on all connections to avoid time zone and encoding errors.
+    """
+    def __init__(self, host, database, user=None, password=None,
+                 max_idle_time=7*3600):
+        self.host = host
+        self.database = database
  
-db - 数据库访问工具类
-moddels - 数据模型
-sql - 数据库创建及数据表创建
-3.3.2 数据库访问工具类
-直接使用Facebook的开源代码，截图如下：
- 
- 
-3.3.3 数据库创建及数据表创建
+ </code></pre>
+### 数据库创建及数据表创建
+
 数据库以及表的创建需要编写程序实现，主要代码存在sql中
   
-第一步：init_db.py 负责创建16个数据库：
+1. init_db.py 负责创建16个数据库：
  
-第二步：seq.py在每个表中创建seq表
+2. seq.py在每个表中创建seq表
  
-第三步：创建具体数据表
+3. 创建具体数据表
  
-3.3.4 核心models层说明
+### 核心models层说明
  
 
-base.py 作为全部models的基类，其他类需继承 代码截屏如下：
+base.py 作为全部models的基类，其他类需继承 代码如下：
  
- 
-3.4 代码使用
+ <pre><code>
+
+ """A lightweight sharding orm framework."""
+
+import random
+import settings
+from db.connection import Connection
+
+class Model(object):
+    """模型基类"""
+    __tablename__ = None
+    __pk__ = "id"
+    __shard_field__ = None
+    __insert_counter__ = random.randint(0, settings.DB_TABLES_LEN-1)
+    
+    def __init__(self, *args, **kwargs):
+        for key, value in kwargs.iteritems():
+            setattr(self, key, value)
+
+    
+    def insert(self):
+        """插入当前对象"""
+        cls = self.__class__
+        if cls.__shard_field__:
+            db_conf, tb_shard = get_db_table(getattr(self, cls.__shard_field__))
+        else:
+            print cls.__insert_counter__
+            db_conf, tb_shard = get_db_table(cls.__insert_counter__)
+            cls.__insert_counter__ = cls.__insert_counter__ + 1
+            if cls.__insert_counter__ >= settings.DB_TABLES_LEN:
+                cls.__insert_counter__ = 0
+        cnn = Connection(*db_conf)
+  </code></pre>
+
+## 代码使用
 插入：
+ <pre><code>
+from models.user import User
+from datetime import datetime
+for n in range(1000):
+	name = 'chinatian_%d' % n
+	phone = '1234432343'
+	pw = '123456'
+	pw_md5 = '343243243'
+	u = User(name=name,
+			password='dsfdsfdsfds', 
+			last_login_time=datetime.now())
+	u.insert()
+	
+</code></pre>
  
 查询：
- 
+  <pre><code>
+@classmethod
+    def get_user_id(cls, field_name, field_value):
+        db_conf, tb_shard = models.get_db_table(field_value)
+        cnn = Connection(*db_conf)
+        try:
+            tb_name = '%s_%d' % (cls.__tablename__, tb_shard,)
+            sql = 'SELECT `user_id` FROM `%s` WHERE `field_name`=%%s AND `field_value`=%%s' % (tb_name,)
+            row = cnn.get(sql, field_name, field_value)
+            return row.user_id
+        finally:
+            cnn.close()
 
-
+</code></pre>
