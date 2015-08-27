@@ -22,8 +22,9 @@ CREATE TABLE `seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='生成id序列号';
 </code></pre>
 - seq存放数据如下：
-id  tb
-1	user_0
+|id|tb|
+|-|:-|
+|1|	user_0|
 17	user_1
 417	user_10
 177	user_11
