@@ -158,7 +158,7 @@ user_index_9
 ### 数据库访问工具类
 直接使用Facebook的开源代码，如下：
 
-<pre><code>
+```python
 """A lightweight wrapper around MySQLdb."""
 
 import copy
@@ -190,7 +190,7 @@ class Connection(object):
         self.host = host
         self.database = database
  
- </code></pre>
+ ```
 
 ### 数据库创建及数据表创建
 
@@ -275,9 +275,9 @@ for n in range(1000):
 </code></pre>
 
 ## 其他第三方数据库分库方案
-- [mycat] http://mycat.io/ 脱胎于淘宝
-- [Oceanus] https://github.com/58code/Oceanus 58同城数据库中间件
-- [本项目托管地址] https://github.com/chinatian/python-orm
+- [mycat](http://mycat.io/) 脱胎于淘宝
+- [Oceanus](https://github.com/58code/Oceanus) 58同城数据库中间件
+- [本项目托管地址](https://github.com/chinatian/python-orm)
 
 作者：田强
 10年互联网研发，就职大唐电信新华瑞德，qq:27998561 
